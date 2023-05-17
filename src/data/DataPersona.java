@@ -139,7 +139,6 @@ public class DataPersona {
 	public void add(Persona p) {
 		PreparedStatement stmt= null;
 		ResultSet keyResultSet=null;
-		DataRol_personas dr_p = null;
 		try {
 			stmt=DbConnector.getInstancia().getConn().
 					prepareStatement(
@@ -158,9 +157,8 @@ public class DataPersona {
 			
 			keyResultSet=stmt.getGeneratedKeys();
             if(keyResultSet!=null && keyResultSet.next()){
-            	dr_p = new DataRol_personas();
                 p.setId(keyResultSet.getInt(1));
-                dr_p.addRol_persona(p);
+                //dr_p.addRol_persona(p);
             }		
 		}  catch (SQLException e) {
             e.printStackTrace();

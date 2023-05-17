@@ -4,14 +4,16 @@ import java.util.LinkedList;
 
 import data.*;
 import entities.*;
-
+import java.util.HashMap;
+import java.util.Map;
 public class Login {
 	private DataPersona dp;
 	private DataRol dr;
-
+	private DataRol_personas dr_p;
 	public Login() {
 		dp=new DataPersona();
 		dr=new DataRol();
+		dr_p = new DataRol_personas();
 	}
 	
 	public Persona validate(Persona p) {
@@ -35,9 +37,11 @@ public class Login {
 		return dp.getByApellido(per);
 	}
 	
-	public void add(Persona p){
+	public void add(Persona p, HashMap<Integer, Rol> roles){
 		dp.add(p);
-		
+		for (Map.Entry<Integer, Rol> entry : roles.entrySet()) {
+			dr_p.addRol_persona(p,entry.getKey());
+		}
 	}
 	
 	public void edit(Persona p) {
@@ -45,6 +49,7 @@ public class Login {
 	}
 	
 	public void delete(Persona p) {
+		dr_p.deleteRol_persona(p);
 		dp.delete(p);
 	}
 	

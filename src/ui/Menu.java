@@ -127,13 +127,12 @@ public class Menu {
 		System.out.println("Habilitado: ");
 		p.setHabilitado(Boolean.parseBoolean(s.nextLine()));	
 		p.setDocumento(d);
-		
 		System.out.println("Ingrese el ID del ROL:");
 		System.out.println(ctrlLogin.getAllRol());
 		r.setId(Integer.parseInt(s.nextLine()));
 		r = ctrlLogin.getById(r);
 		p.addRol(r);
-		ctrlLogin.add(p);
+		ctrlLogin.add(p, p.getRoles());
 	}
 	
 	private void edit() {

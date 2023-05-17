@@ -1,7 +1,6 @@
 package entities;
 
 import java.util.HashMap;
-
 public class Persona {
 	private int id;
 	private Documento documento;
@@ -80,11 +79,7 @@ public class Persona {
 	public HashMap<Integer, Rol> getRoles(){
 		return this.roles;
 	}
-	public int getIdRol() {
-		int id; 
-		id = roles.entrySet().iterator().next().getKey();
-		return id;
-	}
+
 
 	
 	@Override

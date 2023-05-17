@@ -4,12 +4,12 @@ import java.sql.*;
 
 public class DataRol_personas {
 	
-	public void addRol_persona(Persona p) {
+	public void addRol_persona(Persona p, int idRol) {
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = DbConnector.getInstancia().getConn().prepareStatement("insert into rol_persona(id_persona, id_rol) values(?,?)");
 			pstmt.setInt(1,p.getId());
-			pstmt.setInt(2, p.getIdRol());
+			pstmt.setInt(2, idRol);
 			pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
