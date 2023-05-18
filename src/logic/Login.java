@@ -39,9 +39,7 @@ public class Login {
 	
 	public void add(Persona p, HashMap<Integer, Rol> roles){
 		dp.add(p);
-		for (Map.Entry<Integer, Rol> entry : roles.entrySet()) {
-			dr_p.addRol_persona(p,entry.getKey());
-		}
+		addRoles(p,roles);
 	}
 	
 	public void edit(Persona p) {
@@ -49,12 +47,20 @@ public class Login {
 	}
 	
 	public void delete(Persona p) {
-		dr_p.deleteRol_persona(p);
+		deleteRoles(p);
 		dp.delete(p);
 	}
 	
 	public LinkedList<Rol> getAllRol(){
 		return dr.getAll();
+	}
+	public void deleteRoles(Persona p) {
+		dr_p.deleteRol_persona(p);
+	}
+	public void addRoles(Persona p,HashMap<Integer, Rol> roles) {
+		for (Map.Entry<Integer, Rol> entry : roles.entrySet()) {
+			dr_p.addRol_persona(p,entry.getKey());
+		}
 	}
 	
 	public Rol getById(Rol r) {

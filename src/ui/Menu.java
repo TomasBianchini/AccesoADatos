@@ -129,15 +129,27 @@ public class Menu {
 		p.setDocumento(d);
 		System.out.println("Ingrese el ID del ROL:");
 		System.out.println(ctrlLogin.getAllRol());
+		System.out.println("3-Si posee ambos roles");
 		r.setId(Integer.parseInt(s.nextLine()));
-		r = ctrlLogin.getById(r);
-		p.addRol(r);
+		if(r.getId() == 3) {
+			r.setId(1);
+			r = ctrlLogin.getById(r);
+			p.addRol(r);
+			r.setId(2);
+			r = ctrlLogin.getById(r);
+			p.addRol(r);
+		}else {
+			r = ctrlLogin.getById(r);
+			p.addRol(r);
+		}
 		ctrlLogin.add(p, p.getRoles());
 	}
 	
 	private void edit() {
 		System.out.println();
 		Persona p=new Persona();
+		String opc;
+		Rol r = new Rol();
 		p = find();
 		if(p != null){
 			System.out.println("Nombre: ");
@@ -153,9 +165,31 @@ public class Menu {
 			System.out.println("Habilitado: ");
 			p.setHabilitado(Boolean.parseBoolean(s.nextLine()));
 			ctrlLogin.edit(p);
-		}else {
+			System.out.println("Desea modificar los roles de la persona? (S/N)");
+			opc = s.nextLine();
+			if(opc.equalsIgnoreCase("S")) {
+				ctrlLogin.deleteRoles(p);
+				System.out.println("Ingrese el ID del ROL:");
+				System.out.println(ctrlLogin.getAllRol());
+				System.out.println("3-Si posee ambos roles");
+				r.setId(Integer.parseInt(s.nextLine()));
+				if(r.getId() == 3) {
+					r.setId(1);
+					r = ctrlLogin.getById(r);
+					p.addRol(r);
+					r.setId(2);
+					r = ctrlLogin.getById(r);
+					p.addRol(r);
+				}else {
+					r = ctrlLogin.getById(r);
+					p.addRol(r);
+				}
+				
+				ctrlLogin.addRoles(p, p.getRoles());
+			}else {
 			System.out.println("El usuario no existe.");
 			System.out.println();
+			}
 		}
 	}
 
